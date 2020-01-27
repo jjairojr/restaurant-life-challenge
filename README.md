@@ -1,4 +1,5 @@
 # restaurant-challenge
+
     * [x] No máximo 3 Carbos, 3 Proteinas e 3 Vegetais
     * [x] Um máximo de 7 ingredientes por marmita
     * [x] Ela quer mostrar a bebida do dia com algum destaque
@@ -10,14 +11,8 @@
     * [x] O design dessa exibição é livre para que o desenvolvedor exerça sua liberdade criativa.
     * [x] Envolvendo o banco é desejável criar um docker-compose para que os testes possam ser feitos com fidelidade
 
-## Installation
-
-    $ pip install markdown-checklist
-
 ## Usage
 
-    import markdown
-    html = markdown.markdown(source, extensions=['markdown_checklist.extension'])
-
-# restaurant-challenge
-# restaurant-challenge
+    Instale docker e o docker compose em sua máquina
+    Insira no terminal o comando
+    $ docker-compose up
