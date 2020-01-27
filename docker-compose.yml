@@ -2,18 +2,20 @@ version: "3"
 
 services:
   restaraunt-life-challenge-react:
-    container_name: restaraunt-life-challenge-react-teste
-    build: "./frontend/"
+    container_name: restaraunt-life-challenge-reactjs
+    build: ./frontend/
     volumes:
-      - "./frontend/:/usr/src/app"
+      - /usr/src/app/node_modules
     ports:
-      - "3000:3000"
+      - 3000:3000
 
   restaurant-life-challenge-node:
-    container_name: restaurant-life-challenge-node-teste
-    build: "./backend/"
+    container_name: restaurant-life-challenge-nodejs
+    build: ./backend/
     volumes:
       - ./backend/:/usr/app
+      - /usr/app/node_modules
+    command: sh -c "yarn && yarn dev"
     depends_on:
       - postgres
     networks:
@@ -22,7 +24,7 @@ services:
       - "3333:3333"
 
   postgres:
-    container_name: "postgres-restaurant-teste"
+    container_name: "postgresql-restaurant"
     image: postgres:11
     restart: unless-stopped
     volumes:

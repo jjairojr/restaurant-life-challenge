@@ -1,12 +1,11 @@
+#./backend/Dockerfile
 FROM node:alpine
 
 WORKDIR /usr/app
 
-COPY package*.json ./
+ADD . /usr/app
 
-RUN yarn
-
-COPY . .
+RUN yarn install -D && yarn install
 
 EXPOSE 3333
 
