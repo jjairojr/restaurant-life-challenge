@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import api from '../../services/api';
+import { API_URL } from '../../.env.json';
+import axios from 'axios';
+
 
 import { Container, Card, CardContainer, Text } from './styles';
 
@@ -10,9 +12,10 @@ export default function MarmitasPassadas() {
   }, [])
 
   async function carregarMarmitas() {
-    const response = await api.get('/showMeats');
+    const response = await axios.get(`${API_URL}/showMeats`);
     setMarmitasAnteriores(response.data);
   }
+
   return (
     <Container>
       <CardContainer>

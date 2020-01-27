@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 import Snackbar from '@material-ui/core/Snackbar';
@@ -15,12 +16,12 @@ import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
+import { API_URL } from '../../.env.json';
 import SucoAbacaxi from '../../assets/img/bebidas/abacaxi.png';
 import CocaCola from '../../assets/img/bebidas/coca.png';
 import SucoLaranja from '../../assets/img/bebidas/laranja.png';
 import Sprite from '../../assets/img/bebidas/sprite.png';
 import SucoUva from '../../assets/img/bebidas/sucoUva.png';
-import api from '../../services/api'
 import menu from '../../assets/cardapio.json';
 import numeroExecucoes from '../../utils/numeroExecucoes';
 import gerarNumeroAleatorio from '../../utils/gerarNumeroAleatorio';
@@ -95,7 +96,7 @@ export default function Restaurant() {
   }
 
   async function salvarMarmita() {
-    await api.post('/saveMeats', {
+    await axios.post(`${API_URL}/saveMeats`, {
       meat: marmita,
       drink: bebida
     })
