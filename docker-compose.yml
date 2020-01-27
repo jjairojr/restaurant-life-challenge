@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  restaraunt-life-challenge-react:
+    container_name: restaraunt-life-challenge-react-teste
+    build: "./frontend/"
+    volumes:
+      - "./frontend/:/usr/src/app"
+    ports:
+      - "3000:3000"
+
+  restaurant-life-challenge-node:
+    container_name: restaurant-life-challenge-node-teste
+    build: "./backend/"
+    volumes:
+      - ./backend/:/usr/app
+    depends_on:
+      - postgres
+    networks:
+      - app-connect
+    ports:
+      - "3333:3333"
+
+  postgres:
+    container_name: "postgres-restaurant-teste"
+    image: postgres:11
+    restart: unless-stopped
+    volumes:
+      - postgres-restaurant-data:/data
+    env_file:
+      - ./backend/.env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    networks:
+      - app-connect
+    ports:
+      - "5432:5432"
+volumes:
+  postgres-restaurant-data:
+
+networks:
+  app-connect:
+    driver: bridge
